@@ -21,21 +21,19 @@ local function downloadFile(path, func)
             error(string.format('Error while downloading file %s: %s', path, res)); return
         end
         if path:find('.lua') then
-            res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after Aqua Client updates.\n'..res
+            res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after Lunar Vape updates.\n'..res
         end
         writefile(path, res)
     end
     return (func or readfile)(path)
 end
 
-local Dir = string.format('Aqua Client/Extra/Profiles/%s', registry[GAME_NAME])
+local Dir = string.format('Lunar Vape/Extra/Profiles/%s', registry[GAME_NAME])
 if not isfolder(Dir) then makefolder(Dir) end
 
 local Files = loadstring(downloadFile(Dir .. '/Files.lua'))()
-if not isfolder('Aqua Client:Profiles') then makefolder('Aqua Client/Profiles') end
+if not isfolder('Lunar Vape/Profiles') then makefolder('Lunar Vape/Profiles') end
 for _, File in Files do
-  if isfile('Aqua Client/Profiles/' .. File) then continue end
-  writefile('Aqua Client/Profiles/' .. File, downloadFile(string.format('Aqua Client/Extra/Profiles/%s/%s', registry[GAME_NAME], File)))
+  if isfile('Lunar Vape/Profiles/' .. File) then continue end
+  writefile('Lunar Vape/Profiles/' .. File, downloadFile(string.format('Lunar Vape/Extra/Profiles/%s/%s', registry[GAME_NAME], File)))
 end
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
