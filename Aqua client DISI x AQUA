@@ -35,5 +35,7 @@ local Files = loadstring(downloadFile(Dir .. '/Files.lua'))()
 if not isfolder('Aqua Client:Profiles') then makefolder('Aqua Client/Profiles') end
 for _, File in Files do
   if isfile('Aqua Client/Profiles/' .. File) then continue end
-  writefile('Lunar Vape/Profiles/' .. File, downloadFile(string.format('Aqua Client/Extra/Profiles/%s/%s', registry[GAME_NAME], File)))
+  writefile('Aqua Client/Profiles/' .. File, downloadFile(string.format('Aqua Client/Extra/Profiles/%s/%s', registry[GAME_NAME], File)))
 end
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
