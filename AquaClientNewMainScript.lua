@@ -42,4 +42,3 @@ run(function()
         Tooltip = "Toggle realistic shader effects (Bloom + ColorCorrection)"
     })
 end)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()\
