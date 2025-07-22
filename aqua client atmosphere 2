@@ -1,0 +1,54 @@
+local button = script.Parent
+local lighting = game:GetService("Lighting")
+
+local bloom = lighting:FindFirstChild("Bloom")
+local colorCorrection = lighting:FindFirstChild("ColorCorrection")
+
+local shaderEnabled = false
+
+-- Style the button like new Vape v5+
+button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+button.BorderSizePixel = 0
+button.Size = UDim2.new(0, 150, 0, 40)
+button.Position = UDim2.new(0, 20, 0, 20)
+button.Font = Enum.Font.GothamSemibold
+button.TextSize = 20
+button.TextColor3 = Color3.fromRGB(180, 180, 180)
+button.Text = "[ SHADER ]  OFF"
+
+-- Hover effect (lighten button)
+button.MouseEnter:Connect(function()
+    button.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+end)
+button.MouseLeave:Connect(function()
+    if shaderEnabled then
+        button.BackgroundColor3 = Color3.fromRGB(25, 85, 25)
+    else
+        button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    end
+end)
+
+-- Initialize effects off
+if bloom then bloom.Enabled = false end
+if colorCorrection then colorCorrection.Enabled = false end
+
+local function updateButton()
+    if shaderEnabled then
+        button.Text = "[ SHADER ]  ON"
+        button.TextColor3 = Color3.fromRGB(100, 255, 100)
+        button.BackgroundColor3 = Color3.fromRGB(25, 85, 25) -- green background when ON
+    else
+        button.Text = "[ SHADER ]  OFF"
+        button.TextColor3 = Color3.fromRGB(180, 180, 180)
+        button.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- default background when OFF
+    end
+end
+
+local function toggleShader()
+    shaderEnabled = not shaderEnabled
+    if bloom then bloom.Enabled = shaderEnabled end
+    if colorCorrection then colorCorrection.Enabled = shaderEnabled end
+    updateButton()
+end
+
+button.MouseButton1Click:Connect(toggleShader)
